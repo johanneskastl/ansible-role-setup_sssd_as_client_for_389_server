@@ -14,7 +14,7 @@
     name: 'nscd'
     state: 'stopped'
     enabled: 'false'
-  when: 'ansible_os_family == "SUSE"'
+  when: 'ansible_os_family == "Suse"'
 
 - name: 'Create /etc/sssd/sssd.conf'
   template:
