@@ -8,3 +8,9 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
+
+- name: 'Stop and disable the nscd service'
+  service:
+    name: 'nscd'
+    state: 'stopped'
+    enabled: 'false'
