@@ -7,7 +7,9 @@
 
 BASE            {{ ldap_base }}
 URI             {{ ldap_server_uri}}
+{% if ldap_server_ca_certificate is defined %}
 TLS_CACERT      {{ ldap_server_ca_certificate }}
+{% endif %}
 
 #SIZELIMIT      12
 #TIMELIMIT      15
