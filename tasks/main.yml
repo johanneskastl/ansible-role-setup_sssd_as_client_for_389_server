@@ -16,7 +16,7 @@
     enabled: 'false'
   when: 'ansible_os_family == "SUSE"'
 
-- name: 'Create /etc/openldap/ldap.conf'
+- name: 'Create /etc/sssd/sssd.conf'
   template:
     src: 'sssd.conf_only_server_admins_group_allowed.j2'
     dest: '/etc/sssd/sssd.conf'
