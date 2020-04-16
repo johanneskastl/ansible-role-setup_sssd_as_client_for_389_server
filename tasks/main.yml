@@ -13,10 +13,28 @@
     mode: '0644'
 
 - include_tasks: sssd.yml
+  args:
+    apply:
+      tags:
+        - 'sssd'
+  tags:
+    - 'sssd'
 
 - include_tasks: nsswitch.yml
+  args:
+    apply:
+      tags:
+        - 'nsswitch'
+  tags:
+    - 'nsswitch'
 
 - include_tasks: sshd.yml
+  args:
+    apply:
+      tags:
+        - 'sshd'
+  tags:
+    - 'sshd'
 
 - include_tasks: 'pam_configuration_SUSE.yml'
   args:
