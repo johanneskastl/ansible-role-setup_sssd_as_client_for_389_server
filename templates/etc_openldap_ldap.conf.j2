@@ -7,7 +7,7 @@
 
 BASE            {{ ldap_base }}
 URI             {{ ldap_server_uri}}
-TLS_CACERT      /etc/dirsrv/slapd-localhost/ca.crt
+TLS_CACERT      {{ ldap_server_ca_certificate }}
 
 #SIZELIMIT      12
 #TIMELIMIT      15
