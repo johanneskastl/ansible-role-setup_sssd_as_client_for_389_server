@@ -14,7 +14,9 @@ Of course you need a running (and working) LDAP server to connect to...
 Role Variables
 --------------
 
-None.
+`ldap_server_uri`: (Required) LDAP server URI (including the `ldap://` or `ldaps://` prefixes).
+`ldap_server_ca_certificate`: (Optional) Path to the LDAP server's ca.crt file, if using a self-signed certificate.
+`ldap_base`: (Optional) Suffix to be used for the demo content (Default: `dc=training,dc=b1-systems,dc=de`).
 
 Dependencies
 ------------
