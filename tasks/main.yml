@@ -117,6 +117,10 @@
       - 'Restart the sshd service'
 
 - include_tasks: 'pam_configuration_SUSE.yml'
+  args:
+    apply:
+      tags:
+        - 'pam_on_suse'
   when: 'ansible_os_family == "Suse"'
   tags:
     - 'pam_on_suse'
