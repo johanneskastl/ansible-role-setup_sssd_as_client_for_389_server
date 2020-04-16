@@ -32,3 +32,6 @@
     owner: 'root'
     group: 'root'
     mode: '0600'
+  notify:
+    - 'Start the sssd service'
+    - 'Restart the sssd service'
