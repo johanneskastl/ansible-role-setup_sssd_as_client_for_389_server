@@ -14,39 +14,7 @@
 
 - include_tasks: sssd.yml
 
-#
-# nsswitch configuration
-#
-
-#- name: 'Prepare nsswitch configuration'
-#  block:
-#
-#  - name: '/etc/nsswitch.conf: make sure sss is present in passwd line'
-#    lineinfile:
-#      path: '/etc/nsswitch.conf'
-#      line: 'passwd: \1 sss \2'
-#      regexp: '^passwd:\s([a-zA-Z]*)(\ssss)?(\s[a-zA-Z]*)'
-#      state: 'present'
-#      backrefs: 'yes'
-#      backup: 'yes'
-#
-#  - name: '/etc/nsswitch.conf: make sure sss is present in group line'
-#    lineinfile:
-#      path: '/etc/nsswitch.conf'
-#      line: 'group: \1 sss \2'
-#      regexp: '^group:\s([a-zA-Z]*)(\ssss)?(\s[a-zA-Z]*)'
-#      state: 'present'
-#      backrefs: 'yes'
-#      backup: 'yes'
-#
-#  - name: '/etc/nsswitch.conf: make sure sss is present in shadow line'
-#    lineinfile:
-#      path: '/etc/nsswitch.conf'
-#      line: 'shadow: \1 sss \2'
-#      regexp: '^shadow:\s([a-zA-Z]*)(\ssss)?(\s[a-zA-Z]*)'
-#      state: 'present'
-#      backrefs: 'yes'
-#      backup: 'yes'
+- include_tasks: nsswitch.yml
 
 #
 # sshd configuration
