@@ -14,3 +14,4 @@
     name: 'nscd'
     state: 'stopped'
     enabled: 'false'
+  when: 'ansible_os_family == "SUSE"'
