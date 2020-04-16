@@ -15,3 +15,11 @@
     state: 'stopped'
     enabled: 'false'
   when: 'ansible_os_family == "SUSE"'
+
+- name: 'Create /etc/openldap/ldap.conf'
+  template:
+    src: 'sssd.conf_only_server_admins_group_allowed.j2'
+    dest: '/etc/sssd/sssd.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
