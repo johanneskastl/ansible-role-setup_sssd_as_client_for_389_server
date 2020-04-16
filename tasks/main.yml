@@ -115,3 +115,12 @@
       state: 'present'
     notify:
       - 'Restart the sshd service'
+
+- include_tasks:
+    file: 'pam_configuration_SUSE.yml'
+    apply:
+      tags:
+        - 'pam_on_suse'
+  when: 'ansible_os_family == "Suse"'
+  tags:
+    - 'pam_on_suse'

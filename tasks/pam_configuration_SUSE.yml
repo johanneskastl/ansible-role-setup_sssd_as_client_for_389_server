@@ -1,0 +1,20 @@
+---
+# setup_sssd_as_client_for_389_server/tasks/pam_configuration_SUSE.yml
+
+- name: 'Check if sss is already included in pam configuration'
+  command:
+    cmd: '/usr/sbin/pam-config -q --sss'
+  register: 'output_of_pam_config_query_for_sss'
+  changed_when: 'false'
+  check_mode: 'false'
+
+- name: 'Check output of pam-config query'
+  debug:
+    var: 'output_of_pam_config_query_for_sss'
+
+- name: 'Enable sss module in pam configuration using pam-config'
+  shell:
+    cmd: '/usr/sbin/pam-config -a --sss ; /usr/sbin/pam-config -q --sss'
+  when: 'output_of_pam_config_query_for_sss.stdout == ""'
+  register: 'enable_sss_with_pamconfig'
+  failed_when: '"auth:\naccount:\npassword:\nsession:" not in enable_sss_with_pamconfig.stdout'
