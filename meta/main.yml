@@ -1,0 +1,25 @@
+galaxy_info:
+  role_name: 'setup_sssd_as_client_for_389_server'
+  author: 'Johannes Kastl'
+  description: 'Set up sssd as client for a 389 LDAP server'
+  company: 'B1 Systems GmbH'
+
+  license: 'BSD-3-Clause'
+
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: EL
+    versions:
+    - 7
+    - 8
+  - name: opensuse
+    versions:
+    - 15.1
+  - name: SLES
+    versions:
+    - '15SP1'
+
+  galaxy_tags: []
+
+dependencies: []
