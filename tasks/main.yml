@@ -12,29 +12,7 @@
     group: 'root'
     mode: '0644'
 
-#
-# disable the nsdcd service on SUSE/openSUSE
-#
-- name: 'Stop and disable the nscd service'
-  service:
-    name: 'nscd'
-    state: 'stopped'
-    enabled: 'false'
-  when: 'ansible_os_family == "Suse"'
-
-#
-# /etc/sssd/sssd.conf
-#
-- name: 'Create /etc/sssd/sssd.conf'
-  template:
-    src: 'sssd.conf_only_server_admins_group_allowed.j2'
-    dest: '/etc/sssd/sssd.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0600'
-  notify:
-    - 'Start the sssd service'
-    - 'Restart the sssd service'
+- include_tasks: sssd.yml
 
 #
 # nsswitch configuration
