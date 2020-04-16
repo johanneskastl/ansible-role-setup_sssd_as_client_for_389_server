@@ -15,6 +15,6 @@
 - name: 'Enable sss module in pam configuration using pam-config'
   shell:
     cmd: '/usr/sbin/pam-config -a --sss ; /usr/sbin/pam-config -q --sss'
-  when: 'output_of_pam_config_query_for_sss.stdout == ""'
+  when: 'output_of_pam_config_query_for_sss.stdout != "auth:\naccount:\npassword:\nsession:"'
   register: 'enable_sss_with_pamconfig'
   failed_when: '"auth:\naccount:\npassword:\nsession:" not in enable_sss_with_pamconfig.stdout'
