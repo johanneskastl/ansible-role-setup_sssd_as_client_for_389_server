@@ -12,7 +12,7 @@
     lineinfile:
       path: '/etc/nsswitch.conf'
       line: 'passwd:\1\2\3'
-      regexp: '^passwd:(\s\w*)?(\ssss)?(\s\w*)*'
+      regexp: '^passwd:(\s+\w*)?(\ssss)?(\s\w*)*'
       state: 'present'
       backrefs: 'yes'
       backup: 'yes'
@@ -21,7 +21,7 @@
     lineinfile:
       path: '/etc/nsswitch.conf'
       line: 'group:\1\2\3'
-      regexp: '^group:(\s\w*)?(\ssss)?(\s\w*)*'
+      regexp: '^group:(\s+\w*)?(\ssss)?(\s\w*)*'
       state: 'present'
       backrefs: 'yes'
       backup: 'yes'
@@ -30,7 +30,7 @@
     lineinfile:
       path: '/etc/nsswitch.conf'
       line: 'shadow:\1\2\3'
-      regexp: '^shadow:(\s\w*)?(\ssss)?(\s\w*)*'
+      regexp: '^shadow:(\s+\w*)?(\ssss)?(\s\w*)*'
       state: 'present'
       backrefs: 'yes'
       backup: 'yes'
