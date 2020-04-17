@@ -23,6 +23,10 @@
     mode: '0755'
     state: 'directory'
 
+#
+# include files per topic
+#
+
 - include_tasks: sssd.yml
   args:
     apply:
