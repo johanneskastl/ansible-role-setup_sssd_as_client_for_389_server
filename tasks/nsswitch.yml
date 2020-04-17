@@ -8,29 +8,33 @@
 - name: 'Prepare nsswitch configuration'
   block:
 
-  - name: '/etc/nsswitch.conf: make sure sss is present in passwd line'
-    lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: 'passwd:\1\2\3'
-      regexp: '^passwd:(\s+\w*)*?(\ssss)?(\s\w*)*'
-      state: 'present'
-      backrefs: 'yes'
-      backup: 'yes'
+#
+# commented out until the regex is working properly
+#
 
-  - name: '/etc/nsswitch.conf: make sure sss is present in group line'
-    lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: 'group:\1\2\3'
-      regexp: '^group:(\s+\w*)*?(\ssss)?(\s\w*)*'
-      state: 'present'
-      backrefs: 'yes'
-      backup: 'yes'
-
-  - name: '/etc/nsswitch.conf: make sure sss is present in shadow line'
-    lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: 'shadow:\1\2\3'
-      regexp: '^shadow:(\s+\w*)*?(\ssss)?(\s\w*)*'
-      state: 'present'
-      backrefs: 'yes'
-      backup: 'yes'
+#   - name: '/etc/nsswitch.conf: make sure sss is present in passwd line'
+#     lineinfile:
+#       path: '/etc/nsswitch.conf'
+#       line: 'passwd:\1\2\3'
+#       regexp: '^passwd:(\s+\w*)*?(\ssss)?(\s\w*)*'
+#       state: 'present'
+#       backrefs: 'yes'
+#       backup: 'yes'
+#
+#   - name: '/etc/nsswitch.conf: make sure sss is present in group line'
+#     lineinfile:
+#       path: '/etc/nsswitch.conf'
+#       line: 'group:\1\2\3'
+#       regexp: '^group:(\s+\w*)*?(\ssss)?(\s\w*)*'
+#       state: 'present'
+#       backrefs: 'yes'
+#       backup: 'yes'
+#
+#   - name: '/etc/nsswitch.conf: make sure sss is present in shadow line'
+#     lineinfile:
+#       path: '/etc/nsswitch.conf'
+#       line: 'shadow:\1\2\3'
+#       regexp: '^shadow:(\s+\w*)*?(\ssss)?(\s\w*)*'
+#       state: 'present'
+#       backrefs: 'yes'
+#       backup: 'yes'
