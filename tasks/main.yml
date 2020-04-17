@@ -12,6 +12,17 @@
     group: 'root'
     mode: '0644'
 
+#
+# create directory /etc/openldap/certs/
+#
+- name: 'Create directory /etc/openldap/certs/ on all ldapclients'
+  file:
+    dest: '/etc/openldap/certs/'
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+    state: 'directory'
+
 - include_tasks: sssd.yml
   args:
     apply:
