@@ -2,30 +2,16 @@
 # setup_sssd_as_client_for_389_server/tasks/main.yml
 
 #
-# /etc/openldap/ldap.conf
-#
-- name: 'Create /etc/openldap/ldap.conf'
-  template:
-    src: 'etc_openldap_ldap.conf.j2'
-    dest: '/etc/openldap/ldap.conf'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-
-#
-# create directory /etc/openldap/certs/
-#
-- name: 'Create directory /etc/openldap/certs/ on all ldapclients'
-  file:
-    dest: '/etc/openldap/certs/'
-    owner: 'root'
-    group: 'root'
-    mode: '0755'
-    state: 'directory'
-
-#
 # include files per topic
 #
+
+- include_tasks: openldap.yml
+  args:
+    apply:
+      tags:
+        - 'openldap'
+  tags:
+    - 'openldap'
 
 - include_tasks: sssd.yml
   args:
