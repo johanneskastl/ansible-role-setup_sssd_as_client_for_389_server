@@ -24,5 +24,3 @@
   notify:
     - 'Start the sssd service'
     - 'Restart the sssd service'
-
-
