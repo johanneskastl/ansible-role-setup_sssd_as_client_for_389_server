@@ -2,17 +2,17 @@
 # setup_sssd_as_client_for_389_server/handlers/main.yml
 
 - name: 'Start the sssd service'
-  service:
+  ansible.builtin.service:
     name: 'sssd'
     state: 'started'
     enabled: 'true'
 
 - name: 'Restart the sssd service'
-  service:
+  ansible.builtin.service:
     name: 'sssd'
     state: 'restarted'
 
 - name: 'Restart the sshd service'
-  service:
+  ansible.builtin.service:
     name: 'sshd'
     state: 'restarted'
