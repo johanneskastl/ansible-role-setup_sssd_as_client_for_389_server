@@ -5,10 +5,10 @@
 # sshd configuration
 #
 - name: 'Prepare the sshd configuration'
-  block:
+  ansible.builtin.block:
 
   - name: 'sshd_config: Make sure password authentication is enabled'
-    lineinfile:
+    ansible.builtin.lineinfile:
       path: '/etc/ssh/sshd_config'
       line: 'PasswordAuthentication yes'
       regexp: '^PasswordAuthentication'
@@ -18,7 +18,7 @@
       - 'Restart the sshd service'
 
   - name: 'sshd_config: Make sure pubkey authentication is enabled'
-    lineinfile:
+    ansible.builtin.lineinfile:
       path: '/etc/ssh/sshd_config'
       line: 'PubkeyAuthentication yes'
       regexp: '^PubkeyAuthentication'
@@ -28,7 +28,7 @@
       - 'Restart the sshd service'
 
   - name: 'sshd_config: Make sure AuthorizedKeysCommand (needed for pubkey authentication) is enabled'
-    lineinfile:
+    ansible.builtin.lineinfile:
       path: '/etc/ssh/sshd_config'
       line: 'AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys'
       regexp: '^AuthorizedKeysCommand\ .*$'
@@ -38,7 +38,7 @@
       - 'Restart the sshd service'
 
   - name: 'sshd_config: Make sure AuthorizedKeysCommandUser (needed for pubkey authentication) is enabled'
-    lineinfile:
+    ansible.builtin.lineinfile:
       path: '/etc/ssh/sshd_config'
       line: 'AuthorizedKeysCommandUser nobody'
       regexp: '^AuthorizedKeysCommandUser'
