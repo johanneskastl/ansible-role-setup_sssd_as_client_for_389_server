@@ -5,56 +5,50 @@
 # nsswitch configuration
 #
 
-- name: 'Set the necessary lines depending on the OS'
-  ansible.builtin.block:
+- name: 'Setting correct lines on SLES15 / openSUSE Leap 15.x'
+  ansible.builtin.set_fact:
+    nsswitch_line_passwd: 'compat sss'
+    nsswitch_line_group: ' compat sss'
+    nsswitch_line_shadow: 'compat sss'
+  when: 'ansible_os_family == "Suse" and ansible_distribution_major_version | int == 15'
 
-  - name: 'Setting correct lines on SLES15 / openSUSE Leap 15.x'
-    ansible.builtin.set_fact:
-      nsswitch_line_passwd: 'compat sss'
-      nsswitch_line_group: ' compat sss'
-      nsswitch_line_shadow: 'compat sss'
-    when: 'ansible_os_family == "Suse" and ansible_distribution_major_version | int == 15'
+- name: 'Setting correct lines on CentOS 7 (or RHEL 7)'
+  ansible.builtin.set_fact:
+    nsswitch_line_passwd: '    files sss'
+    nsswitch_line_group: '     files sss'
+    nsswitch_line_shadow: '    files sss'
+  when: 'ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 7'
 
-  - name: 'Setting correct lines on CentOS 7 (or RHEL 7)'
-    ansible.builtin.set_fact:
-      nsswitch_line_passwd: '    files sss'
-      nsswitch_line_group: '     files sss'
-      nsswitch_line_shadow: '    files sss'
-    when: 'ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 7'
+- name: 'Setting correct lines on CentOS 8 (or RHEL 8)'
+  ansible.builtin.set_fact:
+    nsswitch_line_passwd: '    sss files systemd'
+    nsswitch_line_group: '     sss files systemd'
+    nsswitch_line_shadow: '    files sss'
+  when: 'ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 8'
 
-  - name: 'Setting correct lines on CentOS 8 (or RHEL 8)'
-    ansible.builtin.set_fact:
-      nsswitch_line_passwd: '    sss files systemd'
-      nsswitch_line_group: '     sss files systemd'
-      nsswitch_line_shadow: '    files sss'
-    when: 'ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 8'
+- name: '/etc/nsswitch.conf: make sure sss is present in passwd line'
+  ansible.builtin.lineinfile:
+    path: '/etc/nsswitch.conf'
+    line: "passwd: {{ nsswitch_line_passwd }}"
+    regexp: '^passwd'
+    state: 'present'
+    backup: 'yes'
 
-- name: 'Prepare nsswitch configuration'
-  ansible.builtin.block:
+- name: '/etc/nsswitch.conf: make sure sss is present in group line'
+  ansible.builtin.lineinfile:
+    path: '/etc/nsswitch.conf'
+    line: "group: {{ nsswitch_line_group }}"
+    regexp: '^group'
+    state: 'present'
+    backup: 'yes'
 
-  - name: '/etc/nsswitch.conf: make sure sss is present in passwd line'
-    ansible.builtin.lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: "passwd: {{ nsswitch_line_passwd }}"
-      regexp: '^passwd'
-      state: 'present'
-      backup: 'yes'
-
-  - name: '/etc/nsswitch.conf: make sure sss is present in group line'
-    ansible.builtin.lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: "group: {{ nsswitch_line_group }}"
-      regexp: '^group'
-      state: 'present'
-      backup: 'yes'
-
-  - name: '/etc/nsswitch.conf: make sure sss is present in shadow line'
-    ansible.builtin.lineinfile:
-      path: '/etc/nsswitch.conf'
-      line: "shadow: {{ nsswitch_line_shadow }}"
-      regexp: '^shadow'
-      state: 'present'
-      backup: 'yes'
+- name: '/etc/nsswitch.conf: make sure sss is present in shadow line'
+  ansible.builtin.lineinfile:
+    path: '/etc/nsswitch.conf'
+    line: "shadow: {{ nsswitch_line_shadow }}"
+    regexp: '^shadow'
+    state: 'present'
+    backup: 'yes'
 
 #
 # commented out until the regex is working properly
