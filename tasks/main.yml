@@ -5,7 +5,8 @@
 # include files per topic
 #
 
-- ansible.builtin.include_tasks: openldap.yml
+- name: 'Run openldap.yml'
+  ansible.builtin.include_tasks: openldap.yml
   args:
     apply:
       tags:
@@ -13,7 +14,8 @@
   tags:
     - 'openldap'
 
-- ansible.builtin.include_tasks: sssd.yml
+- name: 'Run sssd.yml'
+  ansible.builtin.include_tasks: sssd.yml
   args:
     apply:
       tags:
@@ -21,7 +23,8 @@
   tags:
     - 'sssd'
 
-- ansible.builtin.include_tasks: nsswitch.yml
+- name: 'Run nsswitch.yml'
+  ansible.builtin.include_tasks: nsswitch.yml
   args:
     apply:
       tags:
@@ -29,7 +32,8 @@
   tags:
     - 'nsswitch'
 
-- ansible.builtin.include_tasks: sshd.yml
+- name: 'Run sshd.yml'
+  ansible.builtin.include_tasks: sshd.yml
   args:
     apply:
       tags:
@@ -37,7 +41,8 @@
   tags:
     - 'sshd'
 
-- ansible.builtin.include_tasks: 'pam_configuration_SUSE.yml'
+- name: 'Run pam_configuration_SUSE.yml'
+  ansible.builtin.include_tasks: 'pam_configuration_SUSE.yml'
   args:
     apply:
       tags:
