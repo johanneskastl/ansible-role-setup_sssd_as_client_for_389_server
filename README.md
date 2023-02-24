@@ -28,7 +28,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: 'johanneskastl.setup_sssd_as_client_for_389_server' }
+         - role: 'johanneskastl.setup_sssd_as_client_for_389_server'
 
 License
 -------
